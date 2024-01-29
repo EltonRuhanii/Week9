@@ -8,187 +8,114 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    // UI Elements
-    let tableView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.borderWidth = 10
-        view.layer.borderColor = UIColor.brown.cgColor
-        return view
-    }()
-    let moneyAmountLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "$ 1234"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = .white
-
-        return label
-    }()
-    let lastCard: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 10
-        view.backgroundColor = .red
-        
-        return view
-    }()
-    let newCard: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 10
-        view.backgroundColor = .blue
-        
-        return view
-    }()
-    let lastCardLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        
-        return label
-    }()
-    let newCardLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "1"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        
-        return label
-    }()
-    let multiplierLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "x 1"
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textAlignment = .center
-        return label
-    }()
-    let lowerButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("LOWER", for: .normal)
-        button.backgroundColor = .red
-        button.layer.cornerRadius = 10
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.addTarget(self, action: #selector(lowerPressed), for: .touchUpInside)
-
-        return button
-    }()
-    let higherButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("HIGHER", for: .normal)
-        button.layer.cornerRadius = 10
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.addTarget(self, action: #selector(higherPressed), for: .touchUpInside)
-
-        return button
-    }()
-    let cashoutButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("CASHOUT", for: .normal)
-        button.backgroundColor = .red
-        button.layer.cornerRadius = 10
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.addTarget(self, action: #selector(cashoutPressed), for: .touchUpInside)
-
-        return button
-    }()
-    let multiplierView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 10
-        
-
-        return view
-    }()
     
-    // Color assets
-    let background = UIColor(named: "BackgroundC")
-    let primary = UIColor(named: "PrimaryC")
-    let greenGS = UIColor(named: "Green Gradient Start")
-    let greenGE = UIColor(named: "Green Gradient End")
-    let redGS = UIColor(named: "Red Gradient Start")
-    let redGE = UIColor(named: "Red Gradient End")
-    let grayGS = UIColor(named: "Gray Gradient Start")
-    let grayGE = UIColor(named: "Gray Gradient End")
-    let brown = UIColor(named: "brown")
-    var corners: CGFloat = 0.0
-    
-   // MARK: - VARIABLES
-    var lastNumber: Int = 0
-    var currentNumber: Int = 0
-    var newNumber: Int = 0
-    var userGuess: String = ""
-    var multiplier: Double = 1.0
-    
-    var shuffled: Bool = false
+     // UI Elements
+     let tableView: UIView = {
+         let view = createStyledView(cornerRadius: 0, borderWidth: 10, borderColor: UIColor.brown.cgColor)
+         return view
+     }()
+     
+     let moneyAmountLabel: UILabel = {
+         let label = createLabel(text: "$ 1234", fontSize: 16, textColor: .white)
+         return label
+     }()
+     
+    let lastCard: UIView = createCardView(color: UIColor(named: "Red Gradient Start") ?? .red)
+    let newCard: UIView = createCardView(color: UIColor(named: "Green Gradient End") ?? .green)
+     
+     let lastCardLabel: UILabel = createCardLabel()
+     let newCardLabel: UILabel = createCardLabel()
+     
+     let multiplierLabel: UILabel = {
+         let label = createLabel(text: "x 1", fontSize: 18, textColor: .white)
+         label.textAlignment = .center
+         return label
+     }()
+     
+    let lowerButton: UIButton = createStyledButton(title: "LOWER", backgroundColor: UIColor(named: "Red Gradient Start") ?? .red)
+    let higherButton: UIButton = createStyledButton(title: "HIGHER", backgroundColor: UIColor(named: "Green Gradient End") ?? .green)
+     let cashoutButton: UIButton = createStyledButton(title: "CASHOUT", backgroundColor: UIColor(named: "Red Gradient Start") ?? .red)
+     
+     let multiplierView: UIView = createStyledView(cornerRadius: 10)
+     
+     // Color assets
+     let background = UIColor(named: "BackgroundC")
+     let primary = UIColor(named: "PrimaryC")
+     
+     var corners: CGFloat = 0.0
+     
+     // MARK: - VARIABLES
+     var lastNumber: Int = 0
+     var currentNumber: Int = 0
+     var newNumber: Int = 0
+     var userGuess: String = ""
+     var multiplier: Double = 1.0
+     
+     var shuffled: Bool = false
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        corners = self.view.frame.width / 2
-        setupUI()
-        newCardLabel.text = "\(currentNumber)"
-        lastCardLabel.text = "\(lastNumber)"
-        multiplierLabel.text = "x \(multiplier)"
-        higherButton.backgroundColor = greenGE
-        multiplierView.backgroundColor = greenGE
-    }
-    
-    // MARK: - GAME LOGIC
-    func getNewNumber() {
-        let randomNumber = Int(arc4random_uniform(10)) + 1
-        newNumber = randomNumber
-    }
-    
-    func updateNewNumber() {
-        lastNumber = currentNumber
-        currentNumber = newNumber
-        UIView.transition(with: lastCard, duration: 0.5, options: .transitionCurlUp) {
-            self.lastCardLabel.text = "\(self.lastNumber)"
-        }
-        UIView.transition(with: newCard, duration: 0.5, options: .transitionCurlUp) {
-            self.newCardLabel.text = "\(self.newNumber)"
-        }
-        
-    }
-    
-    func checkForWin() {
-        var formatedMultiplier = String(format: "%.2f", multiplier)
-        getNewNumber()
-        updateNewNumber()
-        if userGuess == "Higher" {
-            if currentNumber >= lastNumber {
-                if lastNumber > 7 {
-                    multiplier = multiplier * 3.2
-                } else {
-                    multiplier = multiplier * 1.33
-                }
-                formatedMultiplier = String(format: "%.2f", multiplier)
-                multiplierLabel.text = "\(formatedMultiplier)"
-            } else {
-                multiplier = 1
-                multiplierLabel.text = "\(multiplier)"
-            }
-        } else {
-            if currentNumber <= lastNumber {
-                multiplier = multiplier * 1.33
-                formatedMultiplier = String(format: "%.2f", multiplier)
-                multiplierLabel.text = "\(formatedMultiplier)"
-            } else {
-                multiplier = 1
-                multiplierLabel.text = "\(multiplier)"
-            }
-        }
-    }
-}
+     override func viewDidLoad() {
+         super.viewDidLoad()
+         corners = self.view.frame.width / 2
+         setupUI()
+         newCardLabel.text = "\(currentNumber)"
+         lastCardLabel.text = "\(lastNumber)"
+         multiplierLabel.text = "x \(multiplier)"
+         higherButton.backgroundColor = UIColor(named: "Green Gradient End")
+         multiplierView.backgroundColor = UIColor(named: "Green Gradient End")
+     }
+     
+     // MARK: - GAME LOGIC
+     func getNewNumber() {
+         let randomNumber = Int(arc4random_uniform(10)) + 1
+         newNumber = randomNumber
+     }
+     
+     func updateNewNumber() {
+         lastNumber = currentNumber
+         currentNumber = newNumber
+         UIView.transition(with: lastCard, duration: 0.5, options: .transitionCurlUp) {
+             self.lastCardLabel.text = "\(self.lastNumber)"
+         }
+         UIView.transition(with: newCard, duration: 0.5, options: .transitionCurlUp) {
+             self.newCardLabel.text = "\(self.newNumber)"
+         }
+     }
+     
+     func checkForWin() {
+         var formatedMultiplier = String(format: "%.2f", multiplier)
+         getNewNumber()
+         updateNewNumber()
+         if userGuess == "Higher" {
+             if currentNumber >= lastNumber {
+                 if lastNumber > 7 {
+                     multiplier = multiplier * 3.2
+                 } else {
+                     multiplier = multiplier * 1.33
+                 }
+                 formatedMultiplier = String(format: "%.2f", multiplier)
+                 multiplierLabel.text = "\(formatedMultiplier)"
+             } else {
+                 multiplier = 1
+                 multiplierLabel.text = "\(multiplier)"
+             }
+         } else {
+             if currentNumber <= lastNumber {
+                 multiplier = multiplier * 1.33
+                 formatedMultiplier = String(format: "%.2f", multiplier)
+                 multiplierLabel.text = "\(formatedMultiplier)"
+             } else {
+                 multiplier = 1
+                 multiplierLabel.text = "\(multiplier)"
+             }
+         }
+     }
+ }
 
 extension HomeViewController {
     func setupUI() {
+        lowerButton.addTarget(self, action: #selector(lowerPressed), for: .touchUpInside)
+        higherButton.addTarget(self, action: #selector(higherPressed), for: .touchUpInside)
+        cashoutButton.addTarget(self, action: #selector(cashoutPressed), for: .touchUpInside)
         view.backgroundColor = background
         tableView.backgroundColor = primary
         tableView.layer.cornerRadius = corners
@@ -326,4 +253,46 @@ extension HomeViewController {
         
         view.layoutIfNeeded()
         }
+}
+
+// MARK: - Helper Functions
+extension HomeViewController {
+    static func createStyledView(cornerRadius: CGFloat = 0, borderWidth: CGFloat = 0, borderColor: CGColor? = nil) -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = cornerRadius
+        view.layer.borderWidth = borderWidth
+        view.layer.borderColor = borderColor
+        return view
+    }
+    
+    static func createLabel(text: String, fontSize: CGFloat, textColor: UIColor) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = text
+        label.font = UIFont.boldSystemFont(ofSize: fontSize)
+        label.textColor = textColor
+        return label
+    }
+    
+    static func createCardView(color: UIColor) -> UIView {
+        let view = createStyledView(cornerRadius: 10)
+        view.backgroundColor = color
+        return view
+    }
+    
+    static func createCardLabel() -> UILabel {
+        let label = createLabel(text: "0", fontSize: 24, textColor: .white)
+        return label
+    }
+    
+    static func createStyledButton(title: String, backgroundColor: UIColor ) -> UIButton {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(title, for: .normal)
+        button.backgroundColor = backgroundColor
+        button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        return button
+    }
 }
