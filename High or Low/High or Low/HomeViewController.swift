@@ -14,22 +14,18 @@ class HomeViewController: UIViewController {
     var lastCardTrailingConstraint: NSLayoutConstraint!
     
      // UI Elements
-    let tableView: UIView = {
+    let topView: UIView = {
          let view = createStyledView(cornerRadius: 0, borderWidth: 10, borderColor: UIColor.brown.cgColor)
          return view
      }()
-     
     let moneyAmountLabel: UILabel = {
          let label = createLabel(text: "$ 1234", fontSize: 16, textColor: .white)
          return label
      }()
-     
     let lastCard: UIView = createCardView(color: UIColor(named: "Red Gradient Start") ?? .red)
     let newCard: UIView = createCardView(color: UIColor(named: "Green Gradient End") ?? .green)
-     
     let lastCardLabel: UILabel = createCardLabel()
     let newCardLabel: UILabel = createCardLabel()
-     
     let multiplierLabel: UILabel = {
         let label = createLabel(text: "x 1", fontSize: 18, textColor: .white)
         label.textAlignment = .center
@@ -121,8 +117,8 @@ extension HomeViewController {
         higherButton.addTarget(self, action: #selector(higherPressed), for: .touchUpInside)
         cashoutButton.addTarget(self, action: #selector(cashoutPressed), for: .touchUpInside)
         view.backgroundColor = background
-        tableView.backgroundColor = primary
-        tableView.layer.cornerRadius = corners
+        topView.backgroundColor = primary
+        topView.layer.cornerRadius = corners
         
         let bottomView: UIView = {
             let view = UIView()
@@ -130,11 +126,11 @@ extension HomeViewController {
             return view
         }()
         
-        view.addSubview(tableView)
-        tableView.addSubview(moneyAmountLabel)
+        view.addSubview(topView)
+        topView.addSubview(moneyAmountLabel)
         view.addSubview(bottomView)
-        tableView.addSubview(lastCard)
-        tableView.addSubview(newCard)
+        topView.addSubview(lastCard)
+        topView.addSubview(newCard)
         bottomView.addSubview(lowerButton)
         bottomView.addSubview(higherButton)
         bottomView.addSubview(cashoutButton)
@@ -144,23 +140,23 @@ extension HomeViewController {
         lastCard.addSubview(lastCardLabel)
         newCard.addSubview(newCardLabel)
         
-        newCardLeadingConstraint = newCard.leadingAnchor.constraint(equalTo: tableView.centerXAnchor, constant: 10)
-        lastCardTrailingConstraint = lastCard.trailingAnchor.constraint(equalTo: tableView.centerXAnchor, constant: -10)
-        newCardTrailingConstraint = newCard.trailingAnchor.constraint(equalTo: tableView.centerXAnchor, constant: -10)
-        lastCardLeadingConstraint = lastCard.leadingAnchor.constraint(equalTo: tableView.centerXAnchor, constant: 10)
+        newCardLeadingConstraint = newCard.leadingAnchor.constraint(equalTo: topView.centerXAnchor, constant: 10)
+        lastCardTrailingConstraint = lastCard.trailingAnchor.constraint(equalTo: topView.centerXAnchor, constant: -10)
+        newCardTrailingConstraint = newCard.trailingAnchor.constraint(equalTo: topView.centerXAnchor, constant: -10)
+        lastCardLeadingConstraint = lastCard.leadingAnchor.constraint(equalTo: topView.centerXAnchor, constant: 10)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -corners),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.centerYAnchor),
+            topView.topAnchor.constraint(equalTo: view.topAnchor, constant: -corners),
+            topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topView.bottomAnchor.constraint(equalTo: view.centerYAnchor),
             
             moneyAmountLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             moneyAmountLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 12),
             moneyAmountLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             
             lastCardTrailingConstraint,
-            lastCard.bottomAnchor.constraint(equalTo: tableView.bottomAnchor, constant: -125),
+            lastCard.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -125),
             lastCard.widthAnchor.constraint(equalToConstant: 90),
             lastCard.heightAnchor.constraint(equalToConstant: 160),
             
@@ -175,7 +171,7 @@ extension HomeViewController {
             newCardLabel.centerXAnchor.constraint(equalTo: newCard.centerXAnchor),
             newCardLabel.centerYAnchor.constraint(equalTo: newCard.centerYAnchor),
             
-            bottomView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            bottomView.topAnchor.constraint(equalTo: topView.bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
