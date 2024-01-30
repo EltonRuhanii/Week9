@@ -8,14 +8,18 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    var newCardLeadingConstraint: NSLayoutConstraint!
+    var newCardTrailingConstraint: NSLayoutConstraint!
+    var lastCardLeadingConstraint: NSLayoutConstraint!
+    var lastCardTrailingConstraint: NSLayoutConstraint!
     
      // UI Elements
-     let tableView: UIView = {
+    let tableView: UIView = {
          let view = createStyledView(cornerRadius: 0, borderWidth: 10, borderColor: UIColor.brown.cgColor)
          return view
      }()
      
-     let moneyAmountLabel: UILabel = {
+    let moneyAmountLabel: UILabel = {
          let label = createLabel(text: "$ 1234", fontSize: 16, textColor: .white)
          return label
      }()
@@ -23,92 +27,92 @@ class HomeViewController: UIViewController {
     let lastCard: UIView = createCardView(color: UIColor(named: "Red Gradient Start") ?? .red)
     let newCard: UIView = createCardView(color: UIColor(named: "Green Gradient End") ?? .green)
      
-     let lastCardLabel: UILabel = createCardLabel()
-     let newCardLabel: UILabel = createCardLabel()
+    let lastCardLabel: UILabel = createCardLabel()
+    let newCardLabel: UILabel = createCardLabel()
      
-     let multiplierLabel: UILabel = {
-         let label = createLabel(text: "x 1", fontSize: 18, textColor: .white)
-         label.textAlignment = .center
-         return label
+    let multiplierLabel: UILabel = {
+        let label = createLabel(text: "x 1", fontSize: 18, textColor: .white)
+        label.textAlignment = .center
+        return label
      }()
      
     let lowerButton: UIButton = createStyledButton(title: "LOWER", backgroundColor: UIColor(named: "Red Gradient Start") ?? .red)
     let higherButton: UIButton = createStyledButton(title: "HIGHER", backgroundColor: UIColor(named: "Green Gradient End") ?? .green)
-     let cashoutButton: UIButton = createStyledButton(title: "CASHOUT", backgroundColor: UIColor(named: "Red Gradient Start") ?? .red)
+    let cashoutButton: UIButton = createStyledButton(title: "CASHOUT", backgroundColor: UIColor(named: "Red Gradient Start") ?? .red)
      
-     let multiplierView: UIView = createStyledView(cornerRadius: 10)
+    let multiplierView: UIView = createStyledView(cornerRadius: 10)
      
      // Color assets
-     let background = UIColor(named: "BackgroundC")
-     let primary = UIColor(named: "PrimaryC")
+    let background = UIColor(named: "BackgroundC")
+    let primary = UIColor(named: "PrimaryC")
      
-     var corners: CGFloat = 0.0
+    var corners: CGFloat = 0.0
+    
+    // MARK: - VARIABLES
+    var lastNumber: Int = 0
+    var currentNumber: Int = 0
+    var newNumber: Int = 0
+    var userGuess: String = ""
+    var multiplier: Double = 1.0
      
-     // MARK: - VARIABLES
-     var lastNumber: Int = 0
-     var currentNumber: Int = 0
-     var newNumber: Int = 0
-     var userGuess: String = ""
-     var multiplier: Double = 1.0
-     
-     var shuffled: Bool = false
+    var shuffled: Bool = false
 
-     override func viewDidLoad() {
-         super.viewDidLoad()
-         corners = self.view.frame.width / 2
-         setupUI()
-         newCardLabel.text = "\(currentNumber)"
-         lastCardLabel.text = "\(lastNumber)"
-         multiplierLabel.text = "x \(multiplier)"
-         higherButton.backgroundColor = UIColor(named: "Green Gradient End")
-         multiplierView.backgroundColor = UIColor(named: "Green Gradient End")
-     }
-     
-     // MARK: - GAME LOGIC
-     func getNewNumber() {
-         let randomNumber = Int(arc4random_uniform(10)) + 1
-         newNumber = randomNumber
-     }
-     
-     func updateNewNumber() {
-         lastNumber = currentNumber
-         currentNumber = newNumber
-         UIView.transition(with: lastCard, duration: 0.5, options: .transitionCurlUp) {
-             self.lastCardLabel.text = "\(self.lastNumber)"
-         }
-         UIView.transition(with: newCard, duration: 0.5, options: .transitionCurlUp) {
-             self.newCardLabel.text = "\(self.newNumber)"
-         }
-     }
-     
-     func checkForWin() {
-         var formatedMultiplier = String(format: "%.2f", multiplier)
-         getNewNumber()
-         updateNewNumber()
-         if userGuess == "Higher" {
-             if currentNumber >= lastNumber {
-                 if lastNumber > 7 {
-                     multiplier = multiplier * 3.2
-                 } else {
-                     multiplier = multiplier * 1.33
-                 }
-                 formatedMultiplier = String(format: "%.2f", multiplier)
-                 multiplierLabel.text = "\(formatedMultiplier)"
-             } else {
-                 multiplier = 1
-                 multiplierLabel.text = "\(multiplier)"
-             }
-         } else {
-             if currentNumber <= lastNumber {
-                 multiplier = multiplier * 1.33
-                 formatedMultiplier = String(format: "%.2f", multiplier)
-                 multiplierLabel.text = "\(formatedMultiplier)"
-             } else {
-                 multiplier = 1
-                 multiplierLabel.text = "\(multiplier)"
-             }
-         }
-     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        corners = self.view.frame.width / 2
+        setupUI()
+        newCardLabel.text = "\(currentNumber)"
+        lastCardLabel.text = "\(lastNumber)"
+        multiplierLabel.text = "x \(multiplier)"
+        higherButton.backgroundColor = UIColor(named: "Green Gradient End")
+        multiplierView.backgroundColor = UIColor(named: "Green Gradient End")
+    }
+    
+    // MARK: - GAME LOGIC
+    func getNewNumber() {
+        let randomNumber = Int(arc4random_uniform(10)) + 1
+        newNumber = randomNumber
+    }
+    
+    func updateNewNumber() {
+        lastNumber = currentNumber
+        currentNumber = newNumber
+        UIView.transition(with: lastCard, duration: 0.5, options: .transitionCurlUp) {
+            self.lastCardLabel.text = "\(self.lastNumber)"
+        }
+        UIView.transition(with: newCard, duration: 0.5, options: .transitionCurlUp) {
+            self.newCardLabel.text = "\(self.newNumber)"
+        }
+    }
+    
+    func checkForWin() {
+        var formatedMultiplier = String(format: "%.2f", multiplier)
+        getNewNumber()
+        updateNewNumber()
+        if userGuess == "Higher" {
+            if currentNumber >= lastNumber {
+                if lastNumber > 7 {
+                    multiplier = multiplier * 3.2
+                } else {
+                    multiplier = multiplier * 1.33
+                }
+                formatedMultiplier = String(format: "%.2f", multiplier)
+                multiplierLabel.text = "\(formatedMultiplier)"
+            } else {
+                multiplier = 1
+                multiplierLabel.text = "\(multiplier)"
+            }
+        } else {
+            if currentNumber <= lastNumber {
+                multiplier = multiplier * 1.33
+                formatedMultiplier = String(format: "%.2f", multiplier)
+                multiplierLabel.text = "\(formatedMultiplier)"
+            } else {
+                multiplier = 1
+                multiplierLabel.text = "\(multiplier)"
+            }
+        }
+    }
  }
 
 extension HomeViewController {
@@ -140,6 +144,11 @@ extension HomeViewController {
         lastCard.addSubview(lastCardLabel)
         newCard.addSubview(newCardLabel)
         
+        newCardLeadingConstraint = newCard.leadingAnchor.constraint(equalTo: tableView.centerXAnchor, constant: 10)
+        lastCardTrailingConstraint = lastCard.trailingAnchor.constraint(equalTo: tableView.centerXAnchor, constant: -10)
+        newCardTrailingConstraint = newCard.trailingAnchor.constraint(equalTo: tableView.centerXAnchor, constant: -10)
+        lastCardLeadingConstraint = lastCard.leadingAnchor.constraint(equalTo: tableView.centerXAnchor, constant: 10)
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -corners),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -150,18 +159,18 @@ extension HomeViewController {
             moneyAmountLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 12),
             moneyAmountLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             
-            lastCard.trailingAnchor.constraint(equalTo: tableView.centerXAnchor, constant: -10),
+            lastCardTrailingConstraint,
             lastCard.bottomAnchor.constraint(equalTo: tableView.bottomAnchor, constant: -125),
             lastCard.widthAnchor.constraint(equalToConstant: 90),
-            lastCard.heightAnchor.constraint(equalTo: lastCard.widthAnchor, multiplier: 1.5),
+            lastCard.heightAnchor.constraint(equalToConstant: 160),
             
             lastCardLabel.centerXAnchor.constraint(equalTo: lastCard.centerXAnchor),
             lastCardLabel.centerYAnchor.constraint(equalTo: lastCard.centerYAnchor),
-            
-            newCard.leadingAnchor.constraint(equalTo: tableView.centerXAnchor, constant: 10),
+        
+            newCardLeadingConstraint,
             newCard.topAnchor.constraint(equalTo:lastCard.topAnchor),
             newCard.widthAnchor.constraint(equalToConstant: 90),
-            newCard.heightAnchor.constraint(equalTo: newCard.widthAnchor, multiplier: 1.5),
+            newCard.heightAnchor.constraint(equalToConstant: 160),
             
             newCardLabel.centerXAnchor.constraint(equalTo: newCard.centerXAnchor),
             newCardLabel.centerYAnchor.constraint(equalTo: newCard.centerYAnchor),
@@ -235,21 +244,15 @@ extension HomeViewController {
     }
     
     func changeCardPositions() {
-        print(newCard.frame)
-        print(lastCard.frame)
         NSLayoutConstraint.deactivate([
-            lastCard.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -10),
-            newCard.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10),
-            
+            newCardLeadingConstraint,
+            lastCardTrailingConstraint
         ])
         
         NSLayoutConstraint.activate([
-            newCard.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10),
-            lastCard.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -10),
-            ])
-        
-        print(newCard.frame)
-        print(lastCard.frame)
+            newCardTrailingConstraint,
+            lastCardLeadingConstraint
+        ])
         
         view.layoutIfNeeded()
         }
