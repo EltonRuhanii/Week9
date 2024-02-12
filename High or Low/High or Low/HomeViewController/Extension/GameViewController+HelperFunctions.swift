@@ -1,5 +1,5 @@
 //
-//  HomeViewController+HelperFunctions.swift
+//  GameViewController+HelperFunctions.swift
 //  High or Low
 //
 //  Created by Kin+Carta on 9.2.24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension HomeViewController {
+extension GameViewController {
     static func createStyledView(cornerRadius: CGFloat = 0, borderWidth: CGFloat = 0, borderColor: CGColor? = nil) -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -47,4 +47,3 @@ extension HomeViewController {
         return button
     }
 }
-

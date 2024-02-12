@@ -7,51 +7,56 @@
 
 import UIKit
 
-extension BetViewController {
-    // MARK: - Setup Button Targets
-    func setupButtonTargets() {
+extension BetVC {
+    func setupButtons() {
         oneDollar.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
         fiveDollars.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
         tenDollars.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
         twentyDollars.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
         fiftyDollars.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
         hundredDollars.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
+        allIn.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
     }
     
-    // MARK: - Button Action Func
+    func setupLabels() {
+        moneyAmountLabel.text = "\(String(format: "%.2f", userOne.moneyAmount))"
+        view.backgroundColor =  UIColor(named: "BackgroundC")
+        topView.layer.cornerRadius = corners
+        topView.backgroundColor = UIColor(named: "PrimaryC")
+        moneyAmountLabel.text = "\(String(format: "%.2f", userOne.moneyAmount))"
+    }
+    
     @objc func buttonPressed(sender: UIButton) {
         var amount: CGFloat = 0
         setupLabels()
         
         switch sender {
-                case oneDollar: amount = 1
-                case fiveDollars: amount = 5
-                case tenDollars: amount = 10
-                case twentyDollars: amount = 20
-                case fiftyDollars: amount = 50
-                case hundredDollars: amount = 100
-                default: amount = userOne.moneyAmount
+            case oneDollar: amount = 1
+            case fiveDollars: amount = 5
+            case tenDollars: amount = 10
+            case twentyDollars: amount = 20
+            case fiftyDollars: amount = 50
+            case hundredDollars: amount = 100
+            default: amount = userOne.moneyAmount
         }
         
         UIView.animate(withDuration: 0.5) {
             sender.layer.opacity -= 0.5
             sender.layer.opacity += 0.5
+
         }
         
         if amount <= userOne.moneyAmount{
-            let homeVc = HomeViewController()
-            homeVc.betAmount = amount
+            let gameVC = GameViewController()
+            gameVC.betAmount = amount
             
             userOne.moneyAmount -= amount
             
-            self.navigationController?.pushViewController(homeVc, animated: true)
+            self.navigationController?.pushViewController(gameVC, animated: true)
         } else if userOne.moneyAmount <= 0  {
+
         } else {
+
         }
-    }
-    
-    // MARK: - Setup Labels
-    func setupLabels() {
-        moneyAmountLabel.text = "\(String(format: "%.2f", userOne.moneyAmount))"
     }
 }

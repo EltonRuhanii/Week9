@@ -8,20 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		D8325BD32B72672B00877BE5 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8325BD12B72672B00877BE5 /* UserData.xcdatamodeld */; };
-		D859756E2B63A6ED00F5CE8E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D859756D2B63A6ED00F5CE8E /* HomeViewController.swift */; };
 		D86EFE7C2B626A2B00D2A4AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86EFE7B2B626A2B00D2A4AE /* AppDelegate.swift */; };
 		D86EFE7E2B626A2B00D2A4AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86EFE7D2B626A2B00D2A4AE /* SceneDelegate.swift */; };
 		D86EFE852B626A3200D2A4AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D86EFE842B626A3200D2A4AE /* Assets.xcassets */; };
 		D86EFE882B626A3200D2A4AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86EFE862B626A3200D2A4AE /* LaunchScreen.storyboard */; };
-		D8939EC72B6902BD009898B4 /* BetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8939EC62B6902BC009898B4 /* BetViewController.swift */; };
+		D88669882B7A66D2007CED3E /* BetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88669872B7A66D2007CED3E /* BetVC.swift */; };
+		D886698A2B7A67FD007CED3E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88669892B7A67FD007CED3E /* GameViewController.swift */; };
 		D89EB4642B761C800052D430 /* BetViewController+UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB4632B761C800052D430 /* BetViewController+UIElements.swift */; };
 		D89EB4672B761D510052D430 /* BetViewController+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB4662B761D510052D430 /* BetViewController+Functions.swift */; };
 		D89EB4692B761D8D0052D430 /* BetViewController+HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB4682B761D8D0052D430 /* BetViewController+HelperFunctions.swift */; };
-		D89EB46E2B7624480052D430 /* HomeViewController+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB46D2B7624480052D430 /* HomeViewController+Functions.swift */; };
-		D89EB4702B7626490052D430 /* HomeViewController+UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB46F2B7626490052D430 /* HomeViewController+UIElements.swift */; };
-		D89EB4722B7627B20052D430 /* HomeViewController+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB4712B7627B20052D430 /* HomeViewController+Constraint.swift */; };
-		D89EB4742B7628FE0052D430 /* BetViewController+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB4732B7628FE0052D430 /* BetViewController+Constraint.swift */; };
-		D89EB4762B7655BE0052D430 /* HomeViewController+HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB4752B7655BE0052D430 /* HomeViewController+HelperFunctions.swift */; };
+		D89EB46E2B7624480052D430 /* GameViewController+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB46D2B7624480052D430 /* GameViewController+Functions.swift */; };
+		D89EB4702B7626490052D430 /* GameViewController+UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB46F2B7626490052D430 /* GameViewController+UIElements.swift */; };
+		D89EB4762B7655BE0052D430 /* GameViewController+HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB4752B7655BE0052D430 /* GameViewController+HelperFunctions.swift */; };
 		D8B979572B727ABE007F7E60 /* UsersInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B979552B727ABE007F7E60 /* UsersInformation+CoreDataClass.swift */; };
 		D8B979582B727ABE007F7E60 /* UsersInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B979562B727ABE007F7E60 /* UsersInformation+CoreDataProperties.swift */; };
 		D8CE66482B73AF6400D0E4EC /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE66472B73AF6300D0E4EC /* UserModel.swift */; };
@@ -30,22 +28,20 @@
 
 /* Begin PBXFileReference section */
 		D8325BD22B72672B00877BE5 /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
-		D859756D2B63A6ED00F5CE8E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D86EFE782B626A2B00D2A4AE /* High or Low.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "High or Low.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D86EFE7B2B626A2B00D2A4AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D86EFE7D2B626A2B00D2A4AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D86EFE842B626A3200D2A4AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D86EFE872B626A3200D2A4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D86EFE892B626A3200D2A4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8939EC62B6902BC009898B4 /* BetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetViewController.swift; sourceTree = "<group>"; };
+		D88669872B7A66D2007CED3E /* BetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetVC.swift; sourceTree = "<group>"; };
+		D88669892B7A67FD007CED3E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D89EB4632B761C800052D430 /* BetViewController+UIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BetViewController+UIElements.swift"; sourceTree = "<group>"; };
 		D89EB4662B761D510052D430 /* BetViewController+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BetViewController+Functions.swift"; sourceTree = "<group>"; };
 		D89EB4682B761D8D0052D430 /* BetViewController+HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BetViewController+HelperFunctions.swift"; sourceTree = "<group>"; };
-		D89EB46D2B7624480052D430 /* HomeViewController+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Functions.swift"; sourceTree = "<group>"; };
-		D89EB46F2B7626490052D430 /* HomeViewController+UIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UIElements.swift"; sourceTree = "<group>"; };
-		D89EB4712B7627B20052D430 /* HomeViewController+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Constraint.swift"; sourceTree = "<group>"; };
-		D89EB4732B7628FE0052D430 /* BetViewController+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BetViewController+Constraint.swift"; sourceTree = "<group>"; };
-		D89EB4752B7655BE0052D430 /* HomeViewController+HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+HelperFunctions.swift"; sourceTree = "<group>"; };
+		D89EB46D2B7624480052D430 /* GameViewController+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+Functions.swift"; sourceTree = "<group>"; };
+		D89EB46F2B7626490052D430 /* GameViewController+UIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+UIElements.swift"; sourceTree = "<group>"; };
+		D89EB4752B7655BE0052D430 /* GameViewController+HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+HelperFunctions.swift"; sourceTree = "<group>"; };
 		D8B979552B727ABE007F7E60 /* UsersInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D8B979562B727ABE007F7E60 /* UsersInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D8CE66472B73AF6300D0E4EC /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -109,8 +105,7 @@
 		D89EB4652B761C850052D430 /* BetViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D89EB4772B76561F0052D430 /* Extenstions */,
-				D8939EC62B6902BC009898B4 /* BetViewController.swift */,
+				D88669872B7A66D2007CED3E /* BetVC.swift */,
 				D89EB46A2B761F350052D430 /* Extension */,
 			);
 			path = BetViewController;
@@ -121,7 +116,6 @@
 			children = (
 				D89EB4632B761C800052D430 /* BetViewController+UIElements.swift */,
 				D89EB4662B761D510052D430 /* BetViewController+Functions.swift */,
-				D89EB4732B7628FE0052D430 /* BetViewController+Constraint.swift */,
 				D89EB4682B761D8D0052D430 /* BetViewController+HelperFunctions.swift */,
 			);
 			path = Extension;
@@ -130,7 +124,7 @@
 		D89EB46B2B76241C0052D430 /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D859756D2B63A6ED00F5CE8E /* HomeViewController.swift */,
+				D88669892B7A67FD007CED3E /* GameViewController.swift */,
 				D89EB46C2B76242B0052D430 /* Extension */,
 			);
 			path = HomeViewController;
@@ -139,19 +133,11 @@
 		D89EB46C2B76242B0052D430 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D89EB46D2B7624480052D430 /* HomeViewController+Functions.swift */,
-				D89EB46F2B7626490052D430 /* HomeViewController+UIElements.swift */,
-				D89EB4712B7627B20052D430 /* HomeViewController+Constraint.swift */,
-				D89EB4752B7655BE0052D430 /* HomeViewController+HelperFunctions.swift */,
+				D89EB46D2B7624480052D430 /* GameViewController+Functions.swift */,
+				D89EB46F2B7626490052D430 /* GameViewController+UIElements.swift */,
+				D89EB4752B7655BE0052D430 /* GameViewController+HelperFunctions.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		D89EB4772B76561F0052D430 /* Extenstions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extenstions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,20 +210,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D89EB4702B7626490052D430 /* HomeViewController+UIElements.swift in Sources */,
+				D89EB4702B7626490052D430 /* GameViewController+UIElements.swift in Sources */,
 				D8325BD32B72672B00877BE5 /* UserData.xcdatamodeld in Sources */,
 				D89EB4672B761D510052D430 /* BetViewController+Functions.swift in Sources */,
-				D89EB4762B7655BE0052D430 /* HomeViewController+HelperFunctions.swift in Sources */,
-				D89EB4742B7628FE0052D430 /* BetViewController+Constraint.swift in Sources */,
-				D89EB4722B7627B20052D430 /* HomeViewController+Constraint.swift in Sources */,
-				D89EB46E2B7624480052D430 /* HomeViewController+Functions.swift in Sources */,
-				D8939EC72B6902BD009898B4 /* BetViewController.swift in Sources */,
+				D89EB4762B7655BE0052D430 /* GameViewController+HelperFunctions.swift in Sources */,
+				D89EB46E2B7624480052D430 /* GameViewController+Functions.swift in Sources */,
 				D86EFE7C2B626A2B00D2A4AE /* AppDelegate.swift in Sources */,
 				D86EFE7E2B626A2B00D2A4AE /* SceneDelegate.swift in Sources */,
+				D88669882B7A66D2007CED3E /* BetVC.swift in Sources */,
+				D886698A2B7A67FD007CED3E /* GameViewController.swift in Sources */,
 				D8CE664A2B73B50500D0E4EC /* UserDatabase.swift in Sources */,
 				D8B979572B727ABE007F7E60 /* UsersInformation+CoreDataClass.swift in Sources */,
 				D89EB4642B761C800052D430 /* BetViewController+UIElements.swift in Sources */,
-				D859756E2B63A6ED00F5CE8E /* HomeViewController.swift in Sources */,
 				D8CE66482B73AF6400D0E4EC /* UserModel.swift in Sources */,
 				D89EB4692B761D8D0052D430 /* BetViewController+HelperFunctions.swift in Sources */,
 				D8B979582B727ABE007F7E60 /* UsersInformation+CoreDataProperties.swift in Sources */,

@@ -1,19 +1,19 @@
 //
-//  HomeViewController+Constraint.swift
-//  High or Low
+// GameViewController+UIElements.swift
+// High or Low
 //
-//  Created by Kin+Carta on 9.2.24.
+// Created by Elton Ruhani on 9.2.24
 //
 
 import UIKit
 
-extension HomeViewController {
+extension GameViewController {
     func setupUI() {
         lowerButton.addTarget(self, action: #selector(lowerPressed), for: .touchUpInside)
         higherButton.addTarget(self, action: #selector(higherPressed), for: .touchUpInside)
         cashoutButton.addTarget(self, action: #selector(cashoutPressed), for: .touchUpInside)
-        view.backgroundColor = backgroundColor
-        topView.backgroundColor = primaryColor
+        view.backgroundColor = background
+        topView.backgroundColor = primary
         topView.layer.cornerRadius = corners
         
         let bottomView: UIView = {
@@ -32,13 +32,15 @@ extension HomeViewController {
         bottomView.addSubview(cashoutButton)
         bottomView.addSubview(multiplierView)
         multiplierView.addSubview(multiplierLabel)
+        
         lastCard.addSubview(lastCardLabel)
         newCard.addSubview(newCardLabel)
         
-        setupConstraints()
-    }
-    
-    func setupConstraints() {
+        newCardLeadingConstraint = newCard.leadingAnchor.constraint(equalTo: topView.centerXAnchor, constant: 10)
+        lastCardTrailingConstraint = lastCard.trailingAnchor.constraint(equalTo: topView.centerXAnchor, constant: -10)
+        newCardTrailingConstraint = newCard.trailingAnchor.constraint(equalTo: topView.centerXAnchor, constant: -10)
+        lastCardLeadingConstraint = lastCard.leadingAnchor.constraint(equalTo: topView.centerXAnchor, constant: 10)
+        
         NSLayoutConstraint.activate([
             topView.topAnchor.constraint(equalTo: view.topAnchor, constant: -corners),
             topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -49,7 +51,7 @@ extension HomeViewController {
             moneyAmountLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 12),
             moneyAmountLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             
-            lastCard.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -10),
+            lastCardTrailingConstraint,
             lastCard.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -125),
             lastCard.widthAnchor.constraint(equalToConstant: 90),
             lastCard.heightAnchor.constraint(equalToConstant: 160),
@@ -57,7 +59,7 @@ extension HomeViewController {
             lastCardLabel.centerXAnchor.constraint(equalTo: lastCard.centerXAnchor),
             lastCardLabel.centerYAnchor.constraint(equalTo: lastCard.centerYAnchor),
         
-            newCard.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10),
+            newCardLeadingConstraint,
             newCard.topAnchor.constraint(equalTo:lastCard.topAnchor),
             newCard.widthAnchor.constraint(equalToConstant: 90),
             newCard.heightAnchor.constraint(equalToConstant: 160),
@@ -94,6 +96,7 @@ extension HomeViewController {
             multiplierLabel.trailingAnchor.constraint(equalTo: multiplierView.trailingAnchor, constant: -6),
             multiplierLabel.topAnchor.constraint(equalTo: multiplierView.topAnchor, constant: 3),
             multiplierLabel.bottomAnchor.constraint(equalTo: multiplierView.bottomAnchor, constant: -3),
+            
         ])
     }
 }

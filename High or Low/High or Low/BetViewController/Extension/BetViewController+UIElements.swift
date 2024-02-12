@@ -7,85 +7,23 @@
 
 import UIKit
 
-extension BetViewController {
-    // MARK: - UI ELEMENTS
-    var topView: UIView {
-        let view = BetViewController.createStyledView(cornerRadius: 0, borderWidth: 10, borderColor: UIColor.brown.cgColor)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = corners
-        view.backgroundColor = UIColor(named: "PrimaryC")
-        return view
-    }
-    var moneyAmountLabel: UILabel {
-        let label = BetViewController.createLabel(text: "$ \(userOne.moneyAmount)", fontSize: 16, textColor: .white)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }
-    var lastCard: UIView {
-        let view = BetViewController.createCardView(color: UIColor(named: "Red Gradient Start") ?? .red)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }
-    var newCard: UIView {
-        let view = BetViewController.createCardView(color: UIColor(named: "Green Gradient End") ?? .green)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }
-    var bottomView: UIView {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }
-    
-    var oneDollar: UIButton {
-        let button = BetViewController.createStyledButton(title: "$ 1", backgroundColor: UIColor(named: "Green Gradient Start") ?? .green)
-        button.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
-        return button
-    }
-    var fiveDollars: UIButton {
-        let button = BetViewController.createStyledButton(title: "$ 5", backgroundColor: UIColor(named: "Green Gradient Start") ?? .green)
-        button.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
-        return button
-    }
-    var tenDollars: UIButton {
-        let button = BetViewController.createStyledButton(title: "$ 10", backgroundColor: UIColor(named: "Green Gradient Start") ?? .green)
-        button.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
-        return button
-    }
-    var twentyDollars: UIButton {
-        let button = BetViewController.createStyledButton(title: "$ 20", backgroundColor: UIColor(named: "Green Gradient Start") ?? .green)
-        button.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
-        return button
-    }
-    var fiftyDollars: UIButton {
-        let button = BetViewController.createStyledButton(title: "$ 50", backgroundColor: UIColor(named: "Green Gradient Start") ?? .green)
-        button.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
-        return button
-    }
-    var hundredDollars: UIButton {
-        let button = BetViewController.createStyledButton(title: "$ 100", backgroundColor: UIColor(named: "Green Gradient Start") ?? .green)
-        button.addTarget(self, action: #selector(buttonPressed(sender: )), for: .touchUpInside)
-        return button
-    }
-    
-    func setupUI() {
-        moneyAmountLabel.text = "$ \(userOne.moneyAmount)"
-        view.backgroundColor =  UIColor(named: "BackgroundC")
-        topView.backgroundColor = UIColor(named: "PrimaryC")
-        corners = self.view.frame.width / 2
-        topView.layer.cornerRadius = corners
-        moneyAmountLabel.text = "\(String(format: "%.2f", userOne.moneyAmount))"
+extension BetVC {
+    func setupUIElements() {
+        setupLabels()
+        setupButtons()
+        
         view.addSubview(topView)
-        view.addSubview(moneyAmountLabel)
-        view.addSubview(lastCard)
-        view.addSubview(newCard)
+        topView.addSubview(moneyAmountLabel)
+        topView.addSubview(lastCard)
+        topView.addSubview(newCard)
         view.addSubview(bottomView)
-        view.addSubview(oneDollar)
-        view.addSubview(fiveDollars)
-        view.addSubview(tenDollars)
-        view.addSubview(twentyDollars)
-        view.addSubview(fiftyDollars)
-        view.addSubview(hundredDollars)
+        bottomView.addSubview(oneDollar)
+        bottomView.addSubview(fiveDollars)
+        bottomView.addSubview(tenDollars)
+        bottomView.addSubview(twentyDollars)
+        bottomView.addSubview(fiftyDollars)
+        bottomView.addSubview(hundredDollars)
+        bottomView.addSubview(allIn)
         
         NSLayoutConstraint.activate([
             topView.topAnchor.constraint(equalTo: view.topAnchor, constant: -corners),
@@ -103,7 +41,7 @@ extension BetViewController {
             lastCard.heightAnchor.constraint(equalToConstant: 160),
             
             newCard.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10),
-            newCard.topAnchor.constraint(equalTo: lastCard.topAnchor),
+            newCard.topAnchor.constraint(equalTo:lastCard.topAnchor),
             newCard.widthAnchor.constraint(equalToConstant: 90),
             newCard.heightAnchor.constraint(equalToConstant: 160),
             
@@ -141,6 +79,11 @@ extension BetViewController {
             hundredDollars.heightAnchor.constraint(equalToConstant: 40),
             hundredDollars.widthAnchor.constraint(equalToConstant: 120),
             hundredDollars.leadingAnchor.constraint(equalTo: twentyDollars.leadingAnchor),
-        ])
+            
+            allIn.topAnchor.constraint(equalTo: hundredDollars.bottomAnchor, constant: 10),
+            allIn.leadingAnchor.constraint(equalTo:         fiftyDollars.leadingAnchor),
+            allIn.trailingAnchor.constraint(equalTo: hundredDollars.trailingAnchor),
+            allIn.heightAnchor.constraint(equalToConstant: 40)
+            ])
     }
 }

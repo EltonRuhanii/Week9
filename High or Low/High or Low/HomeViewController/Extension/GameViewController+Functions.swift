@@ -1,5 +1,5 @@
 //
-//  HomeViewController+Functions.swift
+//  GameViewController+Functions.swift
 //  High or Low
 //
 //  Created by Kin+Carta on 9.2.24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension HomeViewController {
+extension GameViewController {
     // MARK: - UI FUNCTIONS
     func setupUIElements() {
         corners = self.view.frame.width / 2
@@ -25,6 +25,7 @@ extension HomeViewController {
     }
 
     func updateNewNumber() {
+        getNewNumber()
         lastNumber = currentNumber
         currentNumber = newNumber
         UIView.transition(with: lastCard, duration: 0.5, options: .transitionCurlUp) {
@@ -40,7 +41,7 @@ extension HomeViewController {
         multiplier = 1.0
         moneyAmountLabel.text = "\(String(format: "%.2f", userOne.moneyAmount))"
         multiplierLabel.text = "\(multiplier)"
-        betViewController.moneyAmountLabel.text = "\(String(format: "%.2f", userOne.moneyAmount))"
+        
     }
     
     // MARK: - GAME LOGIC
@@ -117,7 +118,6 @@ extension HomeViewController {
     func checkout() {
         calculateProfit()
         resetValues()
-        betViewController.moneyAmountLabel.text = "\(String(format: "%.2f", userOne.moneyAmount))"
         navigationController?.popViewController(animated: true)
     }
     
@@ -137,6 +137,5 @@ extension HomeViewController {
         userOne.betsPlaced += 1
         userOne.profit = true
         userOne.moneyMadeLost += Int(betAmount * multiplier)
-        betViewController.moneyAmountLabel.text = "\(String(format: "%.2f", userOne.moneyAmount))"
     }
 }
